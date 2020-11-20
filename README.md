@@ -1,10 +1,6 @@
 # Robot Smiles
 Repositório da automação de testes utilzando Robot Framework para o site Smiles
 
-## Requisitos
-
-*
-
 ## Como executar o projeto:
 ### Requitos: 
    * Python 3.9 ou superior
@@ -12,8 +8,8 @@ Repositório da automação de testes utilzando Robot Framework para o site Smil
    * chromedriver versão 87 ou superior
 
 Execução:
-'
+`
 robot -d ./log smiles.robot
-'
+`
 
 
