@@ -1,11 +1,9 @@
 *** Settings ***
 Library     SeleniumLibrary
 Library     DateTime 
-Library     String
-Library     Collections
 
 *** Variables ***
-${url}              http://www.smiles.com.br
+${url}              https://training-wheels-protocol.herokuapp.com/
 
     
 
