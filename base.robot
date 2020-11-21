@@ -20,5 +20,5 @@ newSession
     Set Selenium Timeout	30 seconds
 
 closeSession
-    # Capture Page Screenshot
+    Capture Page Screenshot
     Close Browser

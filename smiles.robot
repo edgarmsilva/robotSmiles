@@ -36,6 +36,7 @@ ${btn_detalhes}         css:#firstFlights article[id*='flightsArticle'] div.deta
 
 
 
+
 *** Test Cases ***
 Acessando o site da Smiles
     [tags]              gru_cdg
@@ -73,8 +74,10 @@ Acessando o site da Smiles
     
     # pegar a quantidade de voos de ida:
     ${qtde_voos_ida}=                     Get WebElements     css:#firstFlights article[id*='flightsArticle'] 
+    ${qtde_voos_volta}=                     Get WebElements     css:#secondFlights article[id*='flightsArticle'] 
 
     ${btn_detalhes_ida}=            Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.details-bt a span
+    ${btn_detalhes_volta}=            Get WebElements     css:#secondFlights article[id*='flightsArticle'] div.details-bt a span
 
     showElementsize                 ${btn_detalhes_ida}     btn_detalhes_ida
    
@@ -184,7 +187,9 @@ Acessando o site da Smiles
     FOR    ${index}    IN RANGE   ${voos_ida_size}
         log to console      Opção de Vôo de ida Nº ${index+1}
         openDetails         ${btn_detalhes_ida}         ${index}
-        ${company_ida}  ${numero_voo_ida}  ${tipo_voo_ida}  ${data_hora_partida_ida}  ${data_hora_chegada_ida}  ${valor_milhas_ida}  ${valor_smilesMoney_ida}        get_elements
+        
+
+        ${company_ida}  ${numero_voo_ida}  ${tipo_voo_ida}  ${data_hora_partida_ida}  ${data_hora_chegada_ida}  ${valor_milhas_ida}  ${valor_smilesMoney_ida}  ${companylogo}       get_elements_ida
 
         # showElementsize     ${company_ida}                  company_ida
         # showElementsize     ${numero_voo_ida}               numero_voo_ida
@@ -193,6 +198,9 @@ Acessando o site da Smiles
         # showElementsize     ${data_hora_chegada_ida}        data_hora_chegada_ida
         # showElementsize     ${valor_milhas_ida}             valor_milhas_ida
         # showElementsize     ${valor_smilesMoney_ida}        valor_smilesMoney_ida
+        
+        # Valida se o thumbnail da companhia existe:        
+        checkimage          ${companylogo}              ${index}
 
         company_name        ${company_ida}              ${index}
         numero_voo          ${numero_voo_ida}           
@@ -204,7 +212,39 @@ Acessando o site da Smiles
         closeDetails        ${btn_detalhes_ida}         ${index}
         log to console      -------------------------------------------------------------------------
     END
+    
+    log to console      -------------------------------------------------------------------------
+    log to console      -------------------------------------------------------------------------
+    log to console      -------------------------------------------------------------------------
 
+    ${voos_volta_size}=            Get Length      ${qtde_voos_volta} 
+    log to console      Quantidade de vôos: ${voos_volta_size}
+    
+    # pegar dados dos vôos de IDA:
+    Log to console      Lista de Vôos de VOLTA:
+    FOR    ${index}    IN RANGE   ${voos_volta_size}
+        log to console      Opção de Vôo de volta Nº ${index+1}
+        openDetails         ${btn_detalhes_volta}         ${index}
+        ${company_volta}  ${numero_voo_volta}  ${tipo_voo_volta}  ${data_hora_partida_volta}  ${data_hora_chegada_volta}  ${valor_milhas_volta}  ${valor_smilesMoney_volta}  ${companylogo}     get_elements_volta
+
+        # showElementsize     ${company_volta}                  company_volta
+        # showElementsize     ${numero_voo_volta}               numero_voo_volta
+        # showElementsize     ${tipo_voo_volta}                 tipo_voo_volta
+        # showElementsize     ${data_hora_partida_volta}        data_hora_partida_volta
+        # showElementsize     ${data_hora_chegada_volta}        data_hora_chegada_volta
+        # showElementsize     ${valor_milhas_volta}             valor_milhas_volta
+        # showElementsize     ${valor_smilesMoney_volta}        valor_smilesMoney_volta
+        checkimage          ${companylogo}                ${index}
+        company_name        ${company_volta}              ${index}
+        numero_voo          ${numero_voo_volta}           
+        tipo_voo            ${tipo_voo_volta}             ${index}
+        data_hora_partida   ${data_hora_partida_volta}
+        data_hora_chegada   ${data_hora_chegada_volta}
+        quantidade_milhas   ${valor_milhas_volta}         ${index}
+        milhas_dinheiro     ${valor_smilesMoney_volta}    ${index}
+        closeDetails        ${btn_detalhes_volta}         ${index}
+        log to console      -------------------------------------------------------------------------
+    END
     
 
     
@@ -232,7 +272,7 @@ Acessando o site da Smiles
 
 *** Keywords ***
 
-get_elements
+get_elements_ida
     ${company_ida}=                 Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.compThumb img.visible-desktop
     ${numero_voo_ida}=              Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.details-bt .checkin-details__flight p
     ${tipo_voo_ida}=                Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.desk-banners div p[class*=cabin]
@@ -240,8 +280,26 @@ get_elements
     ${data_hora_chegada_ida}=       Get WebElements     css:#firstFlights article[id*='flightsArticle'] .checkin-details__return .visible-desktop span:nth-child(2)
     ${valor_milhas_ida}=            Get WebElements     css:#firstFlights article[id*='flightsArticle'] .payment-options .column-miles li.club .flightcb
     ${valor_smilesMoney_ida}=       Get WebElements     css:#firstFlights article[id*='flightsArticle'] .payment-options .column-mandm li.club .flightcb
-    
-    [return]    ${company_ida}  ${numero_voo_ida}  ${tipo_voo_ida}  ${data_hora_partida_ida}  ${data_hora_chegada_ida}  ${valor_milhas_ida}  ${valor_smilesMoney_ida}
+    ${companylogo}                  Get WebElements     css:#firstFlights article[id*='flightsArticle'] .company__thumb
+
+    [return]    ${company_ida}  ${numero_voo_ida}  ${tipo_voo_ida}  ${data_hora_partida_ida}  ${data_hora_chegada_ida}  ${valor_milhas_ida}  ${valor_smilesMoney_ida}  ${companylogo}
+
+get_elements_volta
+    ${company_volta}=                 Get WebElements     css:#secondFlights article[id*='flightsArticle'] div.compThumb img.visible-desktop
+    ${numero_voo_volta}=              Get WebElements     css:#secondFlights article[id*='flightsArticle'] div.details-bt .checkin-details__flight p
+    ${tipo_voo_volta}=                Get WebElements     css:#secondFlights article[id*='flightsArticle'] div.desk-banners div p[class*=cabin]
+    ${data_hora_partida_volta}=       Get WebElements     css:#secondFlights article[id*='flightsArticle'] .checkin-details__depart .visible-desktop span:nth-child(2)
+    ${data_hora_chegada_volta}=       Get WebElements     css:#secondFlights article[id*='flightsArticle'] .checkin-details__return .visible-desktop span:nth-child(2)
+    ${valor_milhas_volta}=            Get WebElements     css:#secondFlights article[id*='flightsArticle'] .payment-options .column-miles li.club .flightcb
+    ${valor_smilesMoney_volta}=       Get WebElements     css:#secondFlights article[id*='flightsArticle'] .payment-options .column-mandm li.club .flightcb
+    ${companylogo}                    Get WebElements     css:#secondFlights article[id*='flightsArticle'] .company__thumb
+
+    [return]    ${company_volta}  ${numero_voo_volta}  ${tipo_voo_volta}  ${data_hora_partida_volta}  ${data_hora_chegada_volta}  ${valor_milhas_volta}  ${valor_smilesMoney_volta}  ${companylogo}
+
+checkimage
+    [Arguments]     ${companylogo}      ${index}  
+    ${elementname}=     Get From List       ${companylogo}      ${index}
+    Page Should Contain Image   ${elementname}
 
 selectDepartureDay
     [Arguments]     ${departureDay}  
@@ -282,6 +340,12 @@ validaVoosIda
         # Run Keyword If	    """${element.text}""" == """${Firstday}"""	Exit For Loop
     END
 
+
+# check_visibility_img_company
+#     [Arguments]     ${element_id}
+#     Element should be visible   ${element_id}
+#     Page should contain image   ${element_id}
+
 showElementsize
     [Arguments]         ${element}      ${name}
     ${size}=            Get Length      ${element} 
@@ -292,6 +356,7 @@ openDetails
     ${element}=     Get From List       ${btn}      ${index}
 
     Click Element       ${element}
+    Capture Page Screenshot
 
 closeDetails
     [Arguments]         ${btn}  ${index}
