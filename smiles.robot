@@ -77,29 +77,34 @@ Acessando o site da Smiles
     ${btn_detalhes_ida}=            Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.details-bt a span
 
     showElementsize                 ${btn_detalhes_ida}     btn_detalhes_ida
-    openDetails                     ${btn_detalhes_ida}
+   
+   
+   
+   
+   
+    # openDetails                     ${btn_detalhes_ida}     0
     
     # pegar todos os elementos necessários dos voos de ida
-    ${company_ida}=                 Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.compThumb img.visible-desktop
-    ${numero_voo_ida}=              Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.details-bt .checkin-details__flight p
-    ${tipo_voo_ida}=                Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.desk-banners div p[class*=cabin]
+    # ${company_ida}=                 Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.compThumb img.visible-desktop
+    # ${numero_voo_ida}=              Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.details-bt .checkin-details__flight p
+    # ${tipo_voo_ida}=                Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.desk-banners div p[class*=cabin]
 
-    ${data_hora_partida_ida}=            Get WebElements     css:#firstFlights article[id*='flightsArticle'] .checkin-details__depart .visible-desktop span:nth-child(2)
-    ${data_hora_chegada_ida}=            Get WebElements     css:#firstFlights article[id*='flightsArticle'] .checkin-details__return .visible-desktop span:nth-child(2)
+    # ${data_hora_partida_ida}=            Get WebElements     css:#firstFlights article[id*='flightsArticle'] .checkin-details__depart .visible-desktop span:nth-child(2)
+    # ${data_hora_chegada_ida}=            Get WebElements     css:#firstFlights article[id*='flightsArticle'] .checkin-details__return .visible-desktop span:nth-child(2)
 
-    # get atribute flt-miles
-    ${valor_milhas_ida}=            Get WebElements     css:#firstFlights article[id*='flightsArticle'] .payment-options .column-miles li.club .flightcb
+    # # get atribute flt-miles
+    # ${valor_milhas_ida}=            Get WebElements     css:#firstFlights article[id*='flightsArticle'] .payment-options .column-miles li.club .flightcb
 
-    # Atributos: flt-miles e flt-money (R$)
-    ${valor_smilesMoney_ida}=       Get WebElements     css:#firstFlights article[id*='flightsArticle'] .payment-options .column-mandm li.club .flightcb
+    # # Atributos: flt-miles e flt-money (R$)
+    # ${valor_smilesMoney_ida}=       Get WebElements     css:#firstFlights article[id*='flightsArticle'] .payment-options .column-mandm li.club .flightcb
 
-    showElementsize                 ${company_ida}                  company_ida
-    showElementsize                 ${numero_voo_ida}               numero_voo_ida
-    showElementsize                 ${tipo_voo_ida}                 tipo_voo_ida
-    showElementsize                 ${data_hora_partida_ida}        data_hora_partida_ida
-    showElementsize                 ${data_hora_chegada_ida}        data_hora_chegada_ida
-    showElementsize                 ${valor_milhas_ida}             valor_milhas_ida
-    showElementsize                 ${valor_smilesMoney_ida}        valor_smilesMoney_ida
+    # showElementsize                 ${company_ida}                  company_ida
+    # showElementsize                 ${numero_voo_ida}               numero_voo_ida
+    # showElementsize                 ${tipo_voo_ida}                 tipo_voo_ida
+    # showElementsize                 ${data_hora_partida_ida}        data_hora_partida_ida
+    # showElementsize                 ${data_hora_chegada_ida}        data_hora_chegada_ida
+    # showElementsize                 ${valor_milhas_ida}             valor_milhas_ida
+    # showElementsize                 ${valor_smilesMoney_ida}        valor_smilesMoney_ida
     
 
     # # seção da companhia aérea ---------------------------------------------------
@@ -129,58 +134,85 @@ Acessando o site da Smiles
 
     # END
 
-    # seção do Tipo de vôo ---------------------------------------------------
-    log to console      -------------------------------------------------------------------------
-    FOR    ${element}    IN    @{tipo_voo_ida}
-    # ${lines}=       Get Lines Containing String 	${element.text}     Voo
-    log to console      Tipo de Vôo: ${element.text}
+    # # seção do Tipo de vôo ---------------------------------------------------
+    # log to console      -------------------------------------------------------------------------
+    # FOR    ${element}    IN    @{tipo_voo_ida}
+    # # ${lines}=       Get Lines Containing String 	${element.text}     Voo
+    # log to console      Tipo de Vôo: ${element.text}
 
-    END
+    # END
 
-    # seção do data e hora de partida ---------------------------------------------------
-    log to console      -------------------------------------------------------------------------
-    FOR    ${elementa}    IN    @{data_hora_partida_ida}
-    Run Keyword If    "${elementa.text}"!=""       log to console     Data e Hora da Partida: ${elementa.text}
+    # # seção do data e hora de partida ---------------------------------------------------
+    # log to console      -------------------------------------------------------------------------
+    # FOR    ${elementa}    IN    @{data_hora_partida_ida}
+    # Run Keyword If    "${element.text}"!=""       log to console     Data e Hora da Partida: ${element.text}
 
-    END
+    # END
 
-    FOR    ${element}    IN    @{data_hora_chegada_ida}
-    Run Keyword If    "${element.text}"!=""       log to console     Data e Hora da Chegada: ${element.text}
+    # FOR    ${element}    IN    @{data_hora_chegada_ida}
+    # Run Keyword If    "${element.text}"!=""       log to console     Data e Hora da Chegada: ${element.text}
 
-    END
+    # END
 
    # seção do data e hora de partida ---------------------------------------------------
-    log to console      -------------------------------------------------------------------------
-    FOR    ${element}    IN    @{valor_milhas_ida}
-    # Run Keyword If    "${element.text}"!=""       log to console     Data e Hora da Partida: ${element.text}
-    ${valor}=     Get Element Attribute       ${element}   flt-miles
-    log to console      Quantidade de milhas : ${valor}
+    # log to console      -------------------------------------------------------------------------
+    # FOR    ${element}    IN    @{valor_milhas_ida}
+    # # Run Keyword If    "${element.text}"!=""       log to console     Data e Hora da Partida: ${element.text}
+    # ${valor}=     Get Element Attribute       ${element}   flt-miles
+    # log to console      Quantidade de milhas : ${valor}
 
-    END
+    # END
 
-    FOR    ${element}    IN    @{valor_smilesMoney_ida}
-    ${smiles}=     Get Element Attribute       ${element}   flt-miles
-    ${money}=     Get Element Attribute       ${element}   flt-money
-    log to console      Smiles & Money: ${smiles} + R$${money}
+    # FOR    ${element}    IN    @{valor_smilesMoney_ida}
+    # ${smiles}=     Get Element Attribute       ${element}   flt-miles
+    # ${money}=     Get Element Attribute       ${element}   flt-money
+    # log to console      Smiles & Money: ${smiles} + R$${money}
 
-    END
+    # END
     
     
 
     
     
     log to console      ----------------------------------------------------------
-    log to console      ------------------- Teste de resultados ------------------
-    # log to console      tipo_voo_ida            : tipo_voo_ida[0]
-    # log to console      data_hora_partida_ida   : data_hora_partida_ida[0]
-    # log to console      data_hora_chegada_ida   : data_hora_chegada_ida[0]
-    # log to console      valor_milhas_ida        : valor_milhas_ida[0]
-    # log to console      valor_smilesMoney_ida   : valor_smilesMoney_ida[0]
+    log to console      ---------------------- Resultados ------------------------
+    ${voos_ida_size}=            Get Length      ${qtde_voos_ida} 
+    log to console      Quantidade de vôos: ${voos_ida_size}
+    
+    # pegar dados dos vôos de IDA:
+    Log to console      Lista de Vôos de IDA:
+    FOR    ${index}    IN RANGE   ${voos_ida_size}
+        log to console      Opção de Vôo de ida Nº ${index+1}
+        openDetails         ${btn_detalhes_ida}         ${index}
+        ${company_ida}  ${numero_voo_ida}  ${tipo_voo_ida}  ${data_hora_partida_ida}  ${data_hora_chegada_ida}  ${valor_milhas_ida}  ${valor_smilesMoney_ida}        get_elements
 
-    company_name        ${company_ida}          0
-    numero_voo          ${numero_voo_ida}       0
-    tipo_voo            ${tipo_voo_ida}         0
-    data_hora_partida   ${data_hora_partida_ida}    0
+        # showElementsize     ${company_ida}                  company_ida
+        # showElementsize     ${numero_voo_ida}               numero_voo_ida
+        # showElementsize     ${tipo_voo_ida}                 tipo_voo_ida
+        # showElementsize     ${data_hora_partida_ida}        data_hora_partida_ida
+        # showElementsize     ${data_hora_chegada_ida}        data_hora_chegada_ida
+        # showElementsize     ${valor_milhas_ida}             valor_milhas_ida
+        # showElementsize     ${valor_smilesMoney_ida}        valor_smilesMoney_ida
+
+        company_name        ${company_ida}              ${index}
+        numero_voo          ${numero_voo_ida}           
+        tipo_voo            ${tipo_voo_ida}             ${index}
+        data_hora_partida   ${data_hora_partida_ida}
+        data_hora_chegada   ${data_hora_chegada_ida}
+        quantidade_milhas   ${valor_milhas_ida}         ${index}
+        milhas_dinheiro     ${valor_smilesMoney_ida}    ${index}
+        closeDetails        ${btn_detalhes_ida}         ${index}
+        log to console      -------------------------------------------------------------------------
+    END
+
+    
+
+    
+    
+    
+    
+    # closeDetails        ${btn_detalhes_ida}  0
+
 
     log to console      ----------------------------------------------------------
 
@@ -200,6 +232,17 @@ Acessando o site da Smiles
 
 *** Keywords ***
 
+get_elements
+    ${company_ida}=                 Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.compThumb img.visible-desktop
+    ${numero_voo_ida}=              Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.details-bt .checkin-details__flight p
+    ${tipo_voo_ida}=                Get WebElements     css:#firstFlights article[id*='flightsArticle'] div.desk-banners div p[class*=cabin]
+    ${data_hora_partida_ida}=       Get WebElements     css:#firstFlights article[id*='flightsArticle'] .checkin-details__depart .visible-desktop span:nth-child(2)
+    ${data_hora_chegada_ida}=       Get WebElements     css:#firstFlights article[id*='flightsArticle'] .checkin-details__return .visible-desktop span:nth-child(2)
+    ${valor_milhas_ida}=            Get WebElements     css:#firstFlights article[id*='flightsArticle'] .payment-options .column-miles li.club .flightcb
+    ${valor_smilesMoney_ida}=       Get WebElements     css:#firstFlights article[id*='flightsArticle'] .payment-options .column-mandm li.club .flightcb
+    
+    [return]    ${company_ida}  ${numero_voo_ida}  ${tipo_voo_ida}  ${data_hora_partida_ida}  ${data_hora_chegada_ida}  ${valor_milhas_ida}  ${valor_smilesMoney_ida}
+
 selectDepartureDay
     [Arguments]     ${departureDay}  
     ${elements}=    Get WebElements    //div[@id='ui-datepicker-div']/div[@class='ui-datepicker-group ui-datepicker-group-first']/table/tbody/tr/td[contains(a,'${departureDay}')]
@@ -216,13 +259,6 @@ validaVoosIda
     ${size}=        Get Length      ${qtde_voos_ida}
 
     log to console      Tamanho: ${size}
-
-
-
-    # ${elem}    Get Webelement    locator
-    # ${child elems}    Call Method    ${elem}    find_element_by_class_name    foo
-
-
 
     FOR    ${element}    IN    ${qtde_voos_ida}
 
@@ -249,20 +285,19 @@ validaVoosIda
 showElementsize
     [Arguments]         ${element}      ${name}
     ${size}=            Get Length      ${element} 
-    log to console      -------------------------------------------------
     log to console      ${name} : ${size}
 
 openDetails
-    [Arguments]         ${element}
+    [Arguments]         ${btn}  ${index}
+    ${element}=     Get From List       ${btn}      ${index}
 
+    Click Element       ${element}
 
-    Click Element       ${element[0]}
+closeDetails
+    [Arguments]         ${btn}  ${index}
+    ${element}=     Get From List       ${btn}      ${index}
 
-
-    # Abrir todos os detalhes dos voos de ida:
-    # FOR    ${each}    IN    ${element}
-    #     Click Element       ${each}
-    # END
+    Click Element       ${element}
 
 airfrance
     log to console      Companhia Aérea: Air France
@@ -297,11 +332,21 @@ company_name
     ...    ELSE         Run Keywords     notClassified
     
 numero_voo
-    [Arguments]     ${numero_voo_ida}   ${index}
-    ${element}=     Get From List       ${numero_voo_ida}       ${index}
-    
-    ${line}=       Get Lines Containing String 	${element.text}     Voo
-    log to console      Número do Vôo: ${line}
+    [Arguments]     ${numero_voo_ida}
+    ${size}=            Get Length      ${numero_voo_ida} 
+
+    ${mensagem}=    Set Variable    Número do Vôo:
+    Run Keyword If      ${size}>1       log to console     ** Atenção, essa opção possui conexão **
+    FOR    ${element}    IN    @{numero_voo_ida}
+        ${lines}=       Get Lines Containing String 	${element.text}     Voo
+        log to console      ${mensagem} ${lines}
+        ${mensagem}=     Set Variable If    ${size}>1   Número da Conexão:
+
+    END
+
+troca_mensagem
+    ${mensagem}=    Set Variable    Número da Conexão:
+    [Return] ${mensagem}
 
 tipo_voo
     # seção do Tipo de vôo ---------------------------------------------------
@@ -311,16 +356,27 @@ tipo_voo
 
 data_hora_partida
     # seção do data e hora de partida ---------------------------------------------------
-    [Arguments]     ${data_hora_partida_ida}    ${index}
+    [Arguments]     ${data_hora_partida_ida}       
+    FOR    ${element}    IN    @{data_hora_partida_ida}
+    Run Keyword If    "${element.text}"!=""       log to console     Data e Hora da Partida: ${element.text}
+    END
 
-    Run Keyword If  ${index} > 0     ${new_index}=   ${index}+1
-    ...     ELSE    ${new_index}=   ${index}
+data_hora_chegada
+    [Arguments]     ${data_hora_chegada_ida}   
+    FOR    ${element}    IN    @{data_hora_chegada_ida}
+    Run Keyword If    "${element.text}"!=""       log to console     Data e Hora da Chegada: ${element.text}
+    END
 
-    log to console      indice: ${index}
-    log to console      novo indice: ${new_index}
+quantidade_milhas
+    [Arguments]     ${valor_milhas_ida}   ${index}   
+    ${element}=     Get From List       ${valor_milhas_ida}      ${index}
 
-    ${element}=     Get From List       ${data_hora_partida_ida}       ${new_index}
-    log to console     Data e Hora da Partida: ${element.text}
+    ${valor}=     Get Element Attribute       ${element}   flt-miles
+    log to console      Milhas : ${valor}
 
-
-  
+milhas_dinheiro
+    [Arguments]     ${valor_smilesMoney_ida}   ${index}   
+    ${element}=     Get From List       ${valor_smilesMoney_ida}      ${index}
+    ${smiles}=     Get Element Attribute       ${element}   flt-miles
+    ${money}=     Get Element Attribute       ${element}   flt-money
+    log to console      Smiles & Money: ${smiles} + R$${money}
