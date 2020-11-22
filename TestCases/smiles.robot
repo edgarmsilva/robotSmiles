@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    base.robot
+Resource    ../resources/base.robot
 
 Test Setup      newSession  
 Test Teardown   closeSession
