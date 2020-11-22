@@ -8,7 +8,6 @@ Library     OperatingSystem
 *** Variables ***
 ${url}              http://www.smiles.com.br
 
-    
 
 *** Keywords ***
 newSession
@@ -23,36 +22,6 @@ newSession
 closeSession
     Capture Page Screenshot
     Close Browser
-
-# print_relatorio_voos_ida
-#     [Arguments]         ${qtde_voos_ida}    ${qtde_voos_volta}      ${btn_detalhes_ida}
-#     log to console      ----------------------------------------------------------
-#     log to console      ---------------------- Resultados ------------------------
-#     ${voos_ida_size}=   Get Length          ${qtde_voos_ida} 
-    
-    
-#     # pegar dados dos vôos de IDA:
-#     Log to console      Lista de Vôos de IDA:
-#     log to console      Quantidade de vôos Encontrados: ${voos_ida_size}
-#     FOR    ${index}     IN RANGE   ${voos_ida_size}
-#         log to console      Opção de Vôo de ida Nº ${index+1}
-#         openDetails         ${btn_detalhes_ida}         ${index}
-        
-#         ${company_ida}  ${numero_voo_ida}  ${tipo_voo_ida}  ${data_hora_partida_ida}  ${data_hora_chegada_ida}  ${valor_milhas_ida}  ${valor_smilesMoney_ida}  ${companylogo}       get_elements_ida
-   
-#         # Valida se o thumbnail da companhia existe:        
-#         checkimage          ${companylogo}              ${index}
-
-#         company_name        ${company_ida}              ${index}
-#         numero_voo          ${numero_voo_ida}           
-#         tipo_voo            ${tipo_voo_ida}             ${index}
-#         data_hora_partida   ${data_hora_partida_ida}
-#         data_hora_chegada   ${data_hora_chegada_ida}
-#         quantidade_milhas   ${valor_milhas_ida}         ${index}
-#         milhas_dinheiro     ${valor_smilesMoney_ida}    ${index}
-#         closeDetails        ${btn_detalhes_ida}         ${index}
-#         log to console      -------------------------------------------------------------------------
-#     END
 
 print_relatorio_voos_ida
     [Arguments]         ${qtde_voos_ida}    ${qtde_voos_volta}      ${btn_detalhes_ida}
