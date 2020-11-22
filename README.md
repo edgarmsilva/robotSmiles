@@ -9,10 +9,10 @@ Repositório da automação de testes utilzando Robot Framework para o site Smil
 
 ### Execução:
 `
-robot -d ./log smiles.robot
+robot -d ../log smiles.robot
 `
 
 ### Relatório
-Após a execução, será criada uma pasta "relatorio" na raiz do projeto com a lista de vôos para cada cenário de teste executado
+Após a execução, será criada uma pasta "relatorio" dentro da pasta "TestCases" com a lista de vôos para cada cenário de teste executado
 
 
