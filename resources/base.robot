@@ -8,7 +8,6 @@ Library     OperatingSystem
 *** Variables ***
 ${url}              http://www.smiles.com.br
 
-
 *** Keywords ***
 newSession
     ${options}=     Evaluate  sys.modules['selenium.webdriver.chrome.options'].Options()    sys
