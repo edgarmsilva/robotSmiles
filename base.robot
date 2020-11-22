@@ -56,16 +56,17 @@ closeSession
 
 print_relatorio_voos_ida
     [Arguments]         ${qtde_voos_ida}    ${qtde_voos_volta}      ${btn_detalhes_ida}
-    write_in_file      ----------------------------------------------------------
-    write_in_file      ---------------------- Resultados ------------------------
+    write_in_file      -------------------------------------------------------------------------
+    write_in_file      ------------------------- Resultados da busca ---------------------------
     ${voos_ida_size}=   Get Length          ${qtde_voos_ida} 
     
-    
-    # pegar dados dos vôos de IDA:
-    write_in_file      Lista de Vôos de IDA:
-    write_in_file      Quantidade de vôos Encontrados: ${voos_ida_size}
+    write_in_file      -------------------------------------------------------------------------
+    write_in_file                           *** Lista de Vôos de IDA: ***
+    write_in_file      -------------------------------------------------------------------------
+    write_in_file                        Quantidade de vôos Encontrados: ${voos_ida_size}
+    write_in_file      -------------------------------------------------------------------------
     FOR    ${index}     IN RANGE   ${voos_ida_size}
-        write_in_file      Opção de Vôo de ida Nº ${index+1}
+        write_in_file      Opção de Vôo de ida Nº ${index+1}:
         openDetails         ${btn_detalhes_ida}         ${index}
         
         ${company_ida}  ${numero_voo_ida}  ${tipo_voo_ida}  ${data_hora_partida_ida}  ${data_hora_chegada_ida}  ${valor_milhas_ida}  ${valor_smilesMoney_ida}  ${companylogo}       get_elements_ida
@@ -86,15 +87,17 @@ print_relatorio_voos_ida
 
 print_relatorio_voos_volta
     [Arguments]             ${qtde_voos_ida}        ${qtde_voos_volta}      ${btn_detalhes_volta}
-    write_in_file          -------------------------------------------------------------------------
+    
   
     ${voos_volta_size}=     Get Length      ${qtde_voos_volta} 
     
-    # pegar dados dos vôos de IDA:
-    write_in_file      Lista de Vôos de VOLTA:
-    write_in_file      Quantidade de vôos Encontrados: ${voos_volta_size}
+    write_in_file      -------------------------------------------------------------------------
+    write_in_file                           *** Lista de Vôos de VOLTA: ***
+    write_in_file      -------------------------------------------------------------------------
+    write_in_file                          Quantidade de vôos Encontrados: ${voos_volta_size}
+    write_in_file      -------------------------------------------------------------------------
     FOR    ${index}     IN RANGE   ${voos_volta_size}
-        write_in_file      Opção de Vôo de volta Nº ${index+1}
+        write_in_file      Opção de Vôo de volta Nº ${index+1}:
         openDetails         ${btn_detalhes_volta}         ${index}
         
         ${company_volta}  ${numero_voo_volta}  ${tipo_voo_volta}  ${data_hora_partida_volta}  ${data_hora_chegada_volta}  ${valor_milhas_volta}  ${valor_smilesMoney_volta}  ${companylogo}     get_elements_volta
@@ -201,27 +204,21 @@ closeDetails
     Click Element       ${element}
 
 airfrance
-    # log to console          Companhia Aérea: Air France
     write_in_file  Companhia Aérea: Air France
 
 qatar
-    # log to console      Companhia Aérea: Qatar
     write_in_file  Companhia Aérea: Qatar
 
 klm
-    # log to console      Companhia Aérea: KLM
     write_in_file  Companhia Aérea: KLM
 
 emirates
-    # log to console      Companhia Aérea: Emirates
     write_in_file  Companhia Aérea: Emirates
 
 alitalia
-    # log to console      Companhia Aérea: Alitalia
     write_in_file  Companhia Aérea: Alitalia
 
 notClassified
-    # log to console      Companhia Aérea: Não Classificada.
     write_in_file  Companhia Aérea: Não Classificada.
 
 company_name
@@ -251,7 +248,6 @@ numero_voo
     Run Keyword If      ${size}>1       log to console     ** Atenção, essa opção possui conexão **
     FOR    ${element}   IN    @{numero_voo_ida}
         ${lines}=       Get Lines Containing String 	${element.text}     Voo
-        # log to console  ${mensagem} ${lines}
         write_in_file  ${mensagem} ${lines}
         ${mensagem}=    Set Variable If    ${size}>1   Número da Conexão:
 
@@ -265,21 +261,18 @@ tipo_voo
     # seção do Tipo de vôo ---------------------------------------------------
     [Arguments]         ${tipo_voo_ida}   ${index}
     ${element}=         Get From List     ${tipo_voo_ida}   ${index}
-    # log to console      Tipo de Vôo: ${element.text}
-    write_in_file  Tipo de Vôo: ${element.text}
+    write_in_file       Tipo de Vôo: ${element.text}
 
 data_hora_partida
     # seção do data e hora de partida ---------------------------------------------------
     [Arguments]         ${data_hora_partida_ida}       
     FOR    ${element}   IN    @{data_hora_partida_ida}
-    # Run Keyword If      "${element.text}"!=""       log to console     Data e Hora da Partida: ${element.text}
     Run Keyword If      "${element.text}"!=""       write_in_file  Data e Hora da Partida: ${element.text}
     END
 
 data_hora_chegada
     [Arguments]         ${data_hora_chegada_ida}   
     FOR    ${element}   IN    @{data_hora_chegada_ida}
-    # Run Keyword If      "${element.text}"!=""       log to console     Data e Hora da Chegada: ${element.text}
     Run Keyword If      "${element.text}"!=""       write_in_file  Data e Hora da Chegada: ${element.text}
     END
 
@@ -287,15 +280,13 @@ quantidade_milhas
     [Arguments]     ${valor_milhas_ida}     ${index}   
     ${element}=     Get From List           ${valor_milhas_ida}      ${index}
     ${valor}=       Get Element Attribute   ${element}              flt-miles
-    # log to console  Milhas : ${valor}
-    write_in_file  Milhas : ${valor}
+    write_in_file   Milhas : ${valor}
 
 milhas_dinheiro
     [Arguments]     ${valor_smilesMoney_ida}    ${index}   
     ${element}=     Get From List               ${valor_smilesMoney_ida}    ${index}
     ${smiles}=      Get Element Attribute       ${element}      flt-miles
     ${money}=       Get Element Attribute       ${element}      flt-money
-    # log to console      Smiles & Money: ${smiles} + R$${money}
     write_in_file  Smiles & Money: ${smiles} + R$${money}
 
 write_in_file
