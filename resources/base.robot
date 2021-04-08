@@ -14,6 +14,7 @@ newSession
     Call Method                        ${options}          add_argument                                                  --disable-notifications
     Call Method                        ${options}          add_argument                                                  headless
     Call Method                        ${options}          add_argument                                                  disable-gpu
+    
     ${driver}=                         Create Webdriver    Chrome                                                        options=${options}
     Go To                              ${url}
     Capture Page Screenshot
