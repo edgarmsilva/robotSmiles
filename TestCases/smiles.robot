@@ -37,11 +37,14 @@ Pesquisar Vôos GRU - CDG
 
     ${qtde_voos_ida}=         Get WebElements    css:#firstFlights article[id*='flightsArticle'] 
     ${qtde_voos_volta}=       Get WebElements    css:#secondFlights article[id*='flightsArticle'] 
-    ${btn_detalhes_ida}=      Get WebElements    css:#firstFlights article[id*='flightsArticle'] div.details-bt a span
-    ${btn_detalhes_volta}=    Get WebElements    css:#secondFlights article[id*='flightsArticle'] div.details-bt a span
+    # ${btn_detalhes_ida}=      Get WebElements    css:#firstFlights article[id*='flightsArticle'] div.details-bt a span
+    # ${btn_detalhes_volta}=    Get WebElements    css:#secondFlights article[id*='flightsArticle'] div.details-bt a span
 
-    print_relatorio_voos_ida      ${qtde_voos_ida}    ${qtde_voos_volta}    ${btn_detalhes_ida}      
-    print_relatorio_voos_volta    ${qtde_voos_ida}    ${qtde_voos_volta}    ${btn_detalhes_volta}
+    log to console     qtde_voos_ida: ${qtde_voos_ida}
+    log to console     qtde_voos_volta: ${qtde_voos_volta}
+
+    # print_relatorio_voos_ida      ${qtde_voos_ida}    ${qtde_voos_volta}    ${btn_detalhes_ida}      
+    # print_relatorio_voos_volta    ${qtde_voos_ida}    ${qtde_voos_volta}    ${btn_detalhes_volta}
 
 Pesquisar Vôos GRU - AUH
     [tags]                 gru_auh
